@@ -29,6 +29,9 @@ for file in files:
 
 allData = pd.concat(dataFrames, axis=0)
 allData.region = allData.region.apply(lambda x: x[:-7])
+allData.loc[allData.region == 'Malung-Sälen', 'region'] = 'Malung'
+allData.loc[allData.region == 'Upplands Väsby', 'region'] = 'Upplands-Väsby'
+
 
 pivot = pd.pivot_table(allData, index='region', columns='date', values='per100k')
 pivot.reset_index(inplace=True)
